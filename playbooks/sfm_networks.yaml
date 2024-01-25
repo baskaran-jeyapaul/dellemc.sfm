@@ -1,0 +1,55 @@
+---
+- name: Ansible resource module example for sfm Networks
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan1270"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan1270"
+          network_type: "Vlan"
+          originator: "manual"
+          vlan_min: 1270
+          vlan_max: 1270
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "192.168.1.2" 
+             - name: "192.168.1.4"
+          gateway_ip_address:
+             - name: "172.19.19.243/24"
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan1271"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan1271"
+          network_type: "Vlan"
+          originator: "manual"
+          vlan_min: 1271
+          vlan_max: 1271
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "192.170.1.2" 
+             - name: "192.170.1.4"
+          gateway_ip_address:
+             - name: "172.21.21.243/24"
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+
