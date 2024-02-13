@@ -1,2 +1,12 @@
----
-requires_ansible: '>=2.11.0'  # Use '>=2.9.10' instead, if needed
+requires_ansible: '>=2.9.10'
+plugin_routing:
+  action:
+    sfm_networks:
+      redirect: dellemc.sfm.sfm
+    sfm_nodes:
+      redirect: dellemc.sfm.sfm
+    sfm_fabrics:
+      redirect: dellemc.sfm.sfm
+    sfm_tenants:
+      redirect: dellemc.sfm.sfm
+
