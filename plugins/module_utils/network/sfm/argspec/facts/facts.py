@@ -20,6 +20,7 @@ class FactsArgs(object):  # pylint: disable=R0903
         'networks',
         'nodes',
         'fabrics',
+        'tenants',
     ]
 
     argument_spec = {

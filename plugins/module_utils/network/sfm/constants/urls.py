@@ -15,4 +15,10 @@ FABRIC_BASE_URL = SNF_BASE + "Fabrics"
 FABRIC_GET_URL = FABRIC_BASE_URL + "?$expand=Fabrics"
 FABRIC_SPECIFIC_URL = FABRIC_BASE_URL + "({fabric_id})"
 
+# Tenants
+TENANT_BASE_URL = SNF_BASE + "Tenants"
+TENANT_GET_URL = TENANT_BASE_URL + "?$expand=Tenants"
+TENANT_SPECIFIC_URL = TENANT_BASE_URL + "({tenant_id})"
+
+
 

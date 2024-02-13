@@ -16,6 +16,7 @@ from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.f
 from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.facts.networks.networks import NetworksFacts
 from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.facts.nodes.nodes import NodesFacts
 from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.facts.fabrics.fabrics import FabricsFacts
+from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.facts.tenants.tenants import TenantsFacts
 
 
 FACT_LEGACY_SUBSETS = {}
@@ -23,6 +24,7 @@ FACT_RESOURCE_SUBSETS = dict(
     networks=NetworksFacts,
     nodes=NodesFacts,
     fabrics=FabricsFacts,
+    tenants=TenantsFacts,
 )
 
 
