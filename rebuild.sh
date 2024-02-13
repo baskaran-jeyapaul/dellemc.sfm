@@ -15,4 +15,5 @@ cp ~/.ansible/collections/ansible_collections/dellemc/sfm/plugins/httpapi/httpap
 #ansible-playbook -i playbooks/hosts playbooks/sfm_networks.yaml
 #ansible-playbook -i playbooks/hosts playbooks/sfm_nodes.yaml
 #ansible-playbook -i playbooks/hosts playbooks/sfm_fabrics.yaml
+#ansible-playbook -i playbooks/hosts playbooks/sfm_tenants.yaml
 
