@@ -99,10 +99,7 @@ class Networks(SfmConfigBase):
             'NetworkName': network["network_name"],
             'NetworkType': network['network_type'],
             'QosPriority': network['qos_priority'],
-            'VlanMinimum': network['vlan_min'],
-            'VlanMaximum': network['vlan_max'],
             'AddressFamily': network['address_family'],
-            'PrefixLen': network['prefix_length'],
         }
         ip_address_list = self.get_address_str(network)
         gateway_ip_address = self.get_gateway_str(network)
@@ -112,6 +109,13 @@ class Networks(SfmConfigBase):
         
         if gateway_ip_address:
             payload.update({"GateWayIpAddress": gateway_ip_address})
+
+        if "vlan_min" in network:
+            payload.update({"VlanMinimum": network['vlan_min']})
+        if "vlan_max" in network:
+            payload.update({"VlanMaximum": network['vlan_max']})
+        if "prefix_length" in network:
+            payload.update({"PrefixLen": network['prefix_length']})
         
         if "originator" in network:
             originator = network['originator']
@@ -138,10 +142,7 @@ class Networks(SfmConfigBase):
             'NetworkName': network["network_name"],
             'NetworkType': network['network_type'],
             'QosPriority': network['qos_priority'],
-            'VlanMinimum': network['vlan_min'],
-            'VlanMaximum': network['vlan_max'],
             'AddressFamily': network['address_family'],
-            'PrefixLen': network['prefix_length'],
         }
 
         ip_address_list = self.get_address_str(network)
@@ -153,6 +154,13 @@ class Networks(SfmConfigBase):
         if gateway_ip_address:
             payload.update({"GateWayIpAddress": gateway_ip_address})
         
+        if "vlan_min" in network:
+            payload.update({"VlanMinimum": network['vlan_min']})
+        if "vlan_max" in network:
+            payload.update({"VlanMaximum": network['vlan_max']})
+        if "prefix_length" in network:
+            payload.update({"PrefixLen": network['prefix_length']})
+
         if "originator" in network:
             originator = network['originator']
             if originator is not None:

@@ -61,11 +61,8 @@ class NetworksFacts(SfmFactsBase):
         tenant_id = data.get('TenantId')
         network_name = data.get('NetworkName')
         network_type = data.get('NetworkType')
-        vlan_min = data.get('VlanMinimum')
-        vlan_max = data.get('VlanMaximum')
         qos_priority = data.get('QosPriority')
         address_family = data.get('AddressFamily')
-        prefix_length = data.get('PrefixLen')
 
         gateway_names = []
         if data.get('GateWayIpAddress'):
@@ -86,17 +83,29 @@ class NetworksFacts(SfmFactsBase):
                 networks.update({
                     "ip_address_list": address_names,
                 })
-
+        
+        if data.get('PrefixLen'):
+            prefix_length = data.get('PrefixLen')
+            networks.update({
+                "prefix_length": prefix_length,
+            })
+        if data.get('VlanMinimum'):
+            vlan_min = data.get('VlanMinimum')
+            networks.update({
+                "vlan_min": vlan_min,
+            })
+        if data.get('VlanMaximum'):
+            vlan_max = data.get('VlanMaximum')
+            networks.update({
+                "vlan_max": vlan_max,
+            })
 
         networks.update({
             "network_id": network_id,
             "tenant_id": tenant_id,
             "network_name": network_name,
             "network_type": network_type,
-            "vlan_min": vlan_min,
-            "vlan_max": vlan_max,
             "qos_priority": qos_priority,
-            "address_family": address_family,
-            "prefix_length": prefix_length            
+            "address_family": address_family
         })
         return networks
