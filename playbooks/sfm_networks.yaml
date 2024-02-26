@@ -9,21 +9,18 @@
     - name: sfm Networks attributes configuration
       sfm_networks:
         config:
-        - network_id: "NetworkL3Vlan1270"
+        - network_id: "NetworkRouted1"
           tenant_id: "Global"
-          network_name: "NetworkL3Vlan1270"
-          network_type: "Vlan"
-          originator: "manual"
-          vlan_min: 1270
-          vlan_max: 1270
+          network_name: "NetworkRouted1Name"
+          network_type: "L3Routed"
           qos_priority: "Platinum"
           address_family: "INET"
           prefix_length: 24
           ip_address_list: 
-             - name: "192.168.1.2" 
-             - name: "192.168.1.4"
+             - name: "5.1.1.1" 
+             - name: "5.1.1.2"
           gateway_ip_address:
-             - name: "172.19.19.243/24"
+             - name: "172.5.5.243/24"
         state: merged 
       register: result
     - name: Debug the result
@@ -32,24 +29,60 @@
     - name: sfm Networks attributes configuration
       sfm_networks:
         config:
-        - network_id: "NetworkL3Vlan1271"
+        - network_id: "NetworkL3Vlan1"
           tenant_id: "Global"
-          network_name: "NetworkL3Vlan1271"
+          network_name: "NetworkL3Vlan1Name"
           network_type: "Vlan"
-          originator: "manual"
-          vlan_min: 1271
-          vlan_max: 1271
+          vlan_min: 900
+          vlan_max: 900
           qos_priority: "Platinum"
           address_family: "INET"
           prefix_length: 24
           ip_address_list: 
-             - name: "192.170.1.2" 
-             - name: "192.170.1.4"
-          gateway_ip_address:
-             - name: "172.21.21.243/24"
+             - name: "9.1.1.1" 
+             - name: "9.1.1.2"
         state: merged 
       register: result
     - name: Debug the result
       debug: var=result
 
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan2"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan2Name"
+          network_type: "Vlan"
+          vlan_min: 600
+          vlan_max: 600
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "6.1.1.1" 
+             - name: "6.1.1.2"
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan3"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan3Name"
+          network_type: "Vlan"
+          vlan_min: 700
+          vlan_max: 700
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "7.1.1.1" 
+             - name: "7.1.1.2"
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
 
