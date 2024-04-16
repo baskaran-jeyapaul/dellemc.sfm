@@ -1,0 +1,65 @@
+---
+- name: Ansible resource module example for sfm Uplinks
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Uplinks attributes configuration
+      sfm_uplinks:
+        config:
+        - uplink_id: "BaskaranUplink1"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          uplink_type: "Default"
+          uplink_name: "BaskaranUplink1Name"
+          untagged_network: "NetworkRouted1"
+          interface_list: 
+             - name: "baskaranleaf1:Eth1/3" 
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Uplinks attributes configuration
+      sfm_uplinks:
+        config:
+        - uplink_id: "BaskaranUplink2"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          uplink_type: "Default"
+          uplink_name: "BaskaranUplink2Name"
+          interface_list: 
+             - name: "baskaranleaf1:Eth1/4" 
+          network_list: 
+             - name: "NetworkL3Vlan1" 
+
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Uplinks attributes configuration
+      sfm_uplinks:
+        config:
+        - uplink_id: "BaskaranUplink3"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          uplink_type: "Default"
+          uplink_name: "BaskaranUplink3Name"
+          untagged_network: "NetworkL3Vlan2"
+          interface_list: 
+             - name: "baskaranleaf1:Eth1/5" 
+          network_list: 
+             - name: "NetworkL3Vlan3" 
+
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+
+
+
+
