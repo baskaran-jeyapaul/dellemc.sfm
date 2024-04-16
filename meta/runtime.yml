@@ -9,4 +9,6 @@ plugin_routing:
       redirect: dellemc.sfm.sfm
     sfm_tenants:
       redirect: dellemc.sfm.sfm
+    sfm_uplinks:
+      redirect: dellemc.sfm.sfm
 
