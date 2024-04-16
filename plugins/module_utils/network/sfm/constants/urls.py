@@ -21,4 +21,11 @@ TENANT_GET_URL = TENANT_BASE_URL + "?$expand=Tenants"
 TENANT_SPECIFIC_URL = TENANT_BASE_URL + "({tenant_id})"
 
 
+# Uplinks
+UPLINK_BASE_URL = SNF_BASE + "Uplinks"
+UPLINK_GET_URL = UPLINK_BASE_URL + "?$expand=Uplinks"
+UPLINK_SPECIFIC_URL = UPLINK_BASE_URL + "({uplink_id})"
+
+
+
 
