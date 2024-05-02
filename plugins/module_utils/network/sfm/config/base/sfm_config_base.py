@@ -55,11 +55,13 @@ class SfmConfigBase(ConfigBase):
             result['changed'] = True
         result['commands'] = commands
 
-        changed_facts = self.get_facts()
-
+        # changes
         result['before'] = existing_facts
+        '''
         if result['changed']:
+            changed_facts = self.get_facts()
             result['after'] = changed_facts
+        '''
 
         result['warnings'] = warnings
 
