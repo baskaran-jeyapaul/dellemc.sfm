@@ -11,4 +11,6 @@ plugin_routing:
       redirect: dellemc.sfm.sfm
     sfm_uplinks:
       redirect: dellemc.sfm.sfm
+    sfm_downlinks:
+      redirect: dellemc.sfm.sfm
 
