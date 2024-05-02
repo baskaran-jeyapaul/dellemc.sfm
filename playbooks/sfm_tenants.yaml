@@ -10,7 +10,7 @@
       sfm_tenants:
         config:
         - tenant_id: "tenant1"
-          tenant_name: "tenant1-name"
+          tenant_name: "tenant1n"
           description: "tenant1 description"
         state: merged 
       register: result
@@ -21,7 +21,7 @@
       sfm_tenants:
         config:
         - tenant_id: "tenant2"
-          tenant_name: "tenant2-name"
+          tenant_name: "tenant2n"
           description: "tenant2 description"
         state: merged 
       register: result
@@ -32,7 +32,7 @@
       sfm_tenants:
         config:
         - tenant_id: "tenant3"
-          tenant_name: "tenant3-name"
+          tenant_name: "tenant3n"
           description: "tenant3 description"
         state: merged 
       register: result
