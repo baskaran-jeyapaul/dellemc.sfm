@@ -1,4 +1,5 @@
-SNF_BASE = "redfish/v1/SNF/"
+#SNF_BASE = "redfish/v1/SNF/"
+SNF_BASE = "redfish/v1/SFM/1/"
 
 # Networks
 NETWORK_BASE_URL = SNF_BASE + "Networks"
@@ -25,6 +26,13 @@ TENANT_SPECIFIC_URL = TENANT_BASE_URL + "({tenant_id})"
 UPLINK_BASE_URL = SNF_BASE + "Uplinks"
 UPLINK_GET_URL = UPLINK_BASE_URL + "?$expand=Uplinks"
 UPLINK_SPECIFIC_URL = UPLINK_BASE_URL + "({uplink_id})"
+
+
+# Downlinks
+DOWNLINK_BASE_URL = SNF_BASE + "Downlinks"
+DOWNLINK_GET_URL = DOWNLINK_BASE_URL + "?$expand=Downlinks"
+DOWNLINK_SPECIFIC_URL = DOWNLINK_BASE_URL + "({downlink_id})"
+
 
 
 
