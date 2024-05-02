@@ -93,7 +93,7 @@ class Uplinks(SfmConfigBase):
         method = "POST"
         return self.build_request(url, method, uplink)
 
-    def build_update_request(self, have, uplink):
+    def build_update_requests(self, have, matched_have, uplink):
         debug("build_update_requests", uplink)
         uplink_id = uplink["uplink_id"]    
         url = UPLINK_SPECIFIC_URL.format(uplink_id=uplink_id)
