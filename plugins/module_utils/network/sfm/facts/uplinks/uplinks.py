@@ -61,7 +61,6 @@ class UplinksFacts(SfmFactsBase):
         fabric_id = data.get('FabricId')
         uplink_type = data.get('UplinkType')
         uplink_name = data.get('UplinkName')
-        untagged_network = data.get('UntaggedNetwork')
 
         intf_names = []
         if data.get('InterfaceList'):
@@ -83,12 +82,17 @@ class UplinksFacts(SfmFactsBase):
                     "network_list": nw_names,
                 })
 
+        if data.get('UntaggedNetwork'):
+            untagged_network = data.get('UntaggedNetwork')
+            uplinks.update({
+                "untagged_network": untagged_network,
+            })
+
         uplinks.update({
             "uplink_id": uplink_id,
             "tenant_id": tenant_id,
             "fabric_id": fabric_id,
             "uplink_type": uplink_type,
-            "uplink_name": uplink_name,
-            "untagged_network": untagged_network
+            "uplink_name": uplink_name
         })
         return uplinks
