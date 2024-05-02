@@ -82,6 +82,7 @@ class FabricsFacts(SfmFactsBase):
                     "spines": spine_names,
                 })
 
+        '''
         super_spine_names = []
         if data.get('SuperSpines'):
             super_spines = data.get('SuperSpines')
@@ -91,6 +92,7 @@ class FabricsFacts(SfmFactsBase):
                 fabrics.update({
                     "super_spines": super_spine_names,
                 })
+        '''
 
         vlt_links = []
         if data.get('VltLinks'):
