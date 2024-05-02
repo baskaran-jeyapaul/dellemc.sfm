@@ -41,8 +41,15 @@ class Fabrics(SfmConfigBase):
         self.resource_name = "fabrics"
         self.test_keys = [{'config': {'fabric_blue_print': '', 'fabric_id': '', 'fabric_type': '',
                            'leaves': '', 'name': '', 'spines': '',
+                           'vlt_links': ''
+                           }}]
+
+        '''
+        self.test_keys = [{'config': {'fabric_blue_print': '', 'fabric_id': '', 'fabric_type': '',
+                           'leaves': '', 'name': '', 'spines': '',
                            'super_spines': '', 'vlt_links': ''
                            }}]
+        '''
 
     def get_leaves_str(self, fabric):
         ret = []
@@ -114,7 +121,7 @@ class Fabrics(SfmConfigBase):
             'FabricBluePrint': fabric['fabric_blue_print'],
         }
 
-        super_spines = self.get_super_spines_str(fabric)
+        #super_spines = self.get_super_spines_str(fabric)
         spines = self.get_spines_str(fabric)
         leaves = self.get_leaves_str(fabric)
 
@@ -124,8 +131,10 @@ class Fabrics(SfmConfigBase):
         if spines:
             payload.update({"Spines": spines})
 
+        '''
         if super_spines:
             payload.update({"SuperSpines": super_spines})
+        '''
         
         if vlt_links:
             payload.update({"VltLinks": vlt_links})
@@ -160,7 +169,7 @@ class Fabrics(SfmConfigBase):
             'FabricType': fabric['fabric_type'],
             'FabricBluePrint': fabric['fabric_blue_print'],
         }
-        super_spines = self.get_super_spines_str(fabric)
+        #super_spines = self.get_super_spines_str(fabric)
         spines = self.get_spines_str(fabric)
         leaves = self.get_leaves_str(fabric)
 
@@ -170,8 +179,10 @@ class Fabrics(SfmConfigBase):
         if spines:
             payload.update({"Spines": spines})
 
+        '''
         if super_spines:
             payload.update({"SuperSpines": super_spines})
+        '''
         
         if vlt_links:
             payload.update({"VltLinks": vlt_links})
