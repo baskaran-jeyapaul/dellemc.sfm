@@ -18,9 +18,6 @@
           prefix_length: 24
           ip_address_list: 
              - name: "5.1.1.1" 
-             - name: "5.1.1.2"
-          gateway_ip_address:
-             - name: "172.5.5.243/24"
         state: merged 
       register: result
     - name: Debug the result
@@ -40,7 +37,6 @@
           prefix_length: 24
           ip_address_list: 
              - name: "9.1.1.1" 
-             - name: "9.1.1.2"
         state: merged 
       register: result
     - name: Debug the result
@@ -60,7 +56,6 @@
           prefix_length: 24
           ip_address_list: 
              - name: "6.1.1.1" 
-             - name: "6.1.1.2"
         state: merged 
       register: result
     - name: Debug the result
@@ -80,7 +75,6 @@
           prefix_length: 24
           ip_address_list: 
              - name: "7.1.1.1" 
-             - name: "7.1.1.2"
         state: merged 
       register: result
     - name: Debug the result
