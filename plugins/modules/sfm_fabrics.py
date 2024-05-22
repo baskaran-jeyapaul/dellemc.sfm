@@ -29,6 +29,12 @@ The module file for sfm_fabrics
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
+ANSIBLE_METADATA = {
+    'metadata_version': '1.1',
+    'status': ['preview'],
+    'supported_by': 'community',
+    'license': 'Apache 2.0'
+}
 
 DOCUMENTATION = """
 ---
@@ -64,6 +70,32 @@ options:
         - L3
         - L2
         default: VxLan
+      cut_thru_enable:
+        type: bool
+        description: Cut through enable true or false
+      roce_enable:
+        type: bool
+        description: Roce enable true or false
+      leaf_asn:
+        type: int
+        description: Leaf node ASN value
+      spine_asn:
+        type: int
+        description: Spine node ASN value
+      bgp_cidr:
+        type: str
+        description: BGP CIDR value
+      vtep_cidr:
+        type: str
+        description: VTEP CIDR value
+      topology:
+        type: str
+        description:
+        - Fabric Topology
+        choices:
+        - RackBasedClos
+        - RailOnly
+        - RailOptimized
       super_spines:
         description: List of Super Spines Node Identifier
         type: list
