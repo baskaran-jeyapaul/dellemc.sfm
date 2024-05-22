@@ -21,6 +21,12 @@ from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.constants.
     FABRIC_SPECIFIC_URL,
     FABRIC_BASE_URL,
 )
+from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.constants.tranformers import (
+    retransform_cut_thru_state,
+    retransform_roce_state,
+    transform_cut_thru_state,
+    transform_roce_state,
+)
 
 class Fabrics(SfmConfigBase):
     """
@@ -40,7 +46,8 @@ class Fabrics(SfmConfigBase):
         super(Fabrics, self).__init__(module)
         self.resource_name = "fabrics"
         self.test_keys = [{'config': {'fabric_blue_print': '', 'fabric_id': '', 'fabric_type': '',
-                           'leaves': '', 'name': '', 'spines': '',
+                           'leaves': '', 'name': '', 'spines': '', 'bgp_cidr': '', 'vtep_cidr': '', 
+                           'cut_thru_enable': '', 'roce_enable': '', 'leaf_asn': '', 'spine_asn': '', 'topology': '',
                            'vlt_links': ''
                            }}]
 
@@ -135,6 +142,27 @@ class Fabrics(SfmConfigBase):
         if super_spines:
             payload.update({"SuperSpines": super_spines})
         '''
+
+        if "cut_thru_enable" in fabric:
+            payload.update({"CutThruEnable": retransform_cut_thru_state(fabric["cut_thru_enable"])})
+
+        if "roce_enable" in fabric:
+            payload.update({"RoceEnable": retransform_roce_state(fabric["roce_enable"])})
+        
+        if "leaf_asn" in fabric:
+            payload.update({"LeafAsn": fabric["leaf_asn"]})
+
+        if "spine_asn" in fabric:
+            payload.update({"SpineAsn": fabric["spine_asn"]})
+
+        if "bgp_cidr" in fabric:
+            payload.update({"BgpCIDR": fabric["bgp_cidr"]})
+        
+        if "vtep_cidr" in fabric:
+            payload.update({"VtepCIDR": fabric["vtep_cidr"]})
+
+        if "topology" in fabric:
+            payload.update({"Topology": fabric["topology"]})
         
         if vlt_links:
             payload.update({"VltLinks": vlt_links})
@@ -183,7 +211,28 @@ class Fabrics(SfmConfigBase):
         if super_spines:
             payload.update({"SuperSpines": super_spines})
         '''
+
+        if "cut_thru_enable" in fabric:
+            payload.update({"CutThruEnable": retransform_cut_thru_state(fabric["cut_thru_enable"])})
+
+        if "roce_enable" in fabric:
+            payload.update({"RoceEnable": retransform_roce_state(fabric["roce_enable"])})
         
+        if "leaf_asn" in fabric:
+            payload.update({"LeafAsn": fabric["leaf_asn"]})
+
+        if "spine_asn" in fabric:
+            payload.update({"SpineAsn": fabric["spine_asn"]})
+
+        if "bgp_cidr" in fabric:
+            payload.update({"BgpCIDR": fabric["bgp_cidr"]})
+        
+        if "vtep_cidr" in fabric:
+            payload.update({"VtepCIDR": fabric["vtep_cidr"]})
+
+        if "topology" in fabric:
+            payload.update({"Topology": fabric["topology"]})
+
         if vlt_links:
             payload.update({"VltLinks": vlt_links})
 
