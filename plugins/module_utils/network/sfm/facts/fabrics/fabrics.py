@@ -20,6 +20,12 @@ from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.utils.debu
 from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.constants.urls import (
     FABRIC_GET_URL,
 )
+from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.constants.tranformers import (
+    transform_cut_thru_state,
+    transform_roce_state,
+    retransform_cut_thru_state,
+    retransform_roce_state,
+)
 from ansible_collections.dellemc.sfm.plugins.module_utils.network.sfm.utils.utils import (
     send_requests,
 )
@@ -61,6 +67,15 @@ class FabricsFacts(SfmFactsBase):
         fabric_type = data.get('FabricType')
         fabric_blue_print = data.get('FabricBluePrint')
         name = data.get('Name')
+
+        # AI
+        cut_thru_enable = data.get('CutThruEnable')
+        roce_enable = data.get('RoceEnable')
+        leaf_asn = data.get('LeafAsn')
+        spine_asn = data.get('SpineAsn')
+        bgp_cidr = data.get('BgpCIDR')
+        vtep_cidr = data.get('VtepCIDR')
+        topology = data.get('Topology')
 
         leaf_names = []
         if data.get('Leaves'):
@@ -105,6 +120,23 @@ class FabricsFacts(SfmFactsBase):
                 fabrics.update({
                     "vlt_links": vlt_links,
                 })
+        # AI
+        if cut_thru_enable is not None:
+            #fabrics.update({"cut_thru_enable": transform_cut_thru_state(cut_thru_enable),})
+            fabrics.update({"cut_thru_enable": retransform_cut_thru_state(cut_thru_enable),})
+        if roce_enable is not None:
+            #fabrics.update({"roce_enable": transform_roce_state(roce_enable),})
+            fabrics.update({"roce_enable": retransform_roce_state(roce_enable),})
+        if leaf_asn is not None:
+            fabrics.update({"leaf_asn": leaf_asn,})
+        if spine_asn is not None:
+            fabrics.update({"spine_asn": spine_asn,})
+        if bgp_cidr is not None:
+            fabrics.update({"bgp_cidr": bgp_cidr,})
+        if vtep_cidr is not None:
+            fabrics.update({"vtep_cidr": vtep_cidr,})
+        if topology is not None:
+            fabrics.update({"topology": topology,})
 
         fabrics.update({
             "fabric_id": fabric_id,
