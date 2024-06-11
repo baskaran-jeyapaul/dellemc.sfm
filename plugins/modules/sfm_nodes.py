@@ -29,6 +29,13 @@ The module file for sfm_nodes
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
+ANSIBLE_METADATA = {
+    'metadata_version': '1.1',
+    'status': ['preview'],
+    'supported_by': 'community',
+    'license': 'Apache 2.0'
+}
+
 DOCUMENTATION = """
 ---
 module: sfm_nodes
@@ -86,6 +93,24 @@ options:
       node_name:
         type: str
         description: Node Name
+      rail_id:
+        description: List of Rail Identifier
+        type: list
+        elements: dict
+        suboptions:
+          name:
+            type: str
+            description: Rail Identifier
+      infrastructure_id:
+        type: str
+        description: Infrastructure Identifier
+      rack_name:
+        type: str
+        description: Rack Name
+      pod_name:
+        type: str
+        description: Pod Name
+
   state:
     description:
     - The state of the configuration after module completion.
