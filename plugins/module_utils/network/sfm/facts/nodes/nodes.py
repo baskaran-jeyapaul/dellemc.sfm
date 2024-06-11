@@ -66,6 +66,29 @@ class NodesFacts(SfmFactsBase):
         node_role = data.get('NodeRole')
         node_name = data.get('NodeName')
 
+        # AI
+        infrastructure_id = data.get('InfrastructureId')
+        rack_name = data.get('RackName')
+        pod_name = data.get('PodName')
+
+        rail_names = []
+        if data.get('RailId'):
+            rails = data.get('RailId')
+            if rails is not None:
+                for rail in rails:
+                    rail_names.append({"name": rail})
+                nodes.update({
+                    "rail_id": rail_names,
+                })
+        if infrastructure_id is not None:
+            nodes.update({"infrastructure_id": infrastructure_id,})
+        if rack_name is not None:
+            nodes.update({"rack_name": rack_name,})
+        if pod_name is not None:
+            nodes.update({"pod_name": pod_name,})
+
+        # AI ends
+
         nodes.update({
             "node_id": node_id,
             "node_type": node_type,
