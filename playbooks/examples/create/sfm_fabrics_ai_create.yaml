@@ -1,0 +1,43 @@
+---
+- name: Ansible resource module example for sfm Fabrics
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: "Gather facts"
+      sfm_facts:
+        gather_subset: min
+        gather_network_resources: 
+          - fabrics
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Fabrics attributes configuration 
+      sfm_fabrics:
+        config:
+        - fabric_id: "baskaranfabric1"
+          fabric_type: "L3"
+          fabric_blue_print: "DefaultFabricBluePrint"
+          name: "baskaranfabric1name"
+          cut_thru_enable: false
+          roce_enable: false
+          leaf_asn: 65211
+          spine_asn: 65311
+          bgp_cidr: "162.0.0.1"
+          vtep_cidr: "162.0.0.2"
+          topology: "RailOnly"
+          leaves: 
+             - name: "baskaranleaf1" 
+             - name: "baskaranleaf2"
+          spines:
+             - name: "baskaranspine1"
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+
+

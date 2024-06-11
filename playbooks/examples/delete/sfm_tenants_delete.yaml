@@ -1,0 +1,41 @@
+---
+- name: Ansible resource module example for sfm Tenants
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Tenants attributes configuration
+      sfm_tenants:
+        config:
+        - tenant_id: "tenant1"
+          tenant_name: "tenant1-name"
+          description: "tenant1 description"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Tenants attributes configuration
+      sfm_tenants:
+        config:
+        - tenant_id: "tenant2"
+          tenant_name: "tenant2-name"
+          description: "tenant2 description"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Tenants attributes configuration
+      sfm_tenants:
+        config:
+        - tenant_id: "tenant3"
+          tenant_name: "tenant3-name"
+          description: "tenant3 description"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+

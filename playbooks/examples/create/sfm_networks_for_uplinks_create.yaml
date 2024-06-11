@@ -1,0 +1,82 @@
+---
+- name: Ansible resource module example for sfm Networks
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkRouted1"
+          tenant_id: "Global"
+          network_name: "NetworkRouted1Name"
+          network_type: "L3Routed"
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "5.1.1.1" 
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan1"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan1Name"
+          network_type: "Vlan"
+          vlan_min: 900
+          vlan_max: 900
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "9.1.1.1" 
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan2"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan2Name"
+          network_type: "Vlan"
+          vlan_min: 600
+          vlan_max: 600
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "6.1.1.1" 
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Networks attributes configuration
+      sfm_networks:
+        config:
+        - network_id: "NetworkL3Vlan3"
+          tenant_id: "Global"
+          network_name: "NetworkL3Vlan3Name"
+          network_type: "Vlan"
+          vlan_min: 700
+          vlan_max: 700
+          qos_priority: "Platinum"
+          address_family: "INET"
+          prefix_length: 24
+          ip_address_list: 
+             - name: "7.1.1.1" 
+        state: merged 
+      register: result
+    - name: Debug the result
+      debug: var=result
+

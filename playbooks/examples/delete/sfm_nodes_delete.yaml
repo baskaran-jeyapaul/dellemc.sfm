@@ -1,0 +1,59 @@
+---
+- name: Ansible resource module example for sfm Nodes
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Nodes attributes configuration
+      sfm_nodes:
+        config:
+        - node_id: "baskaranleaf2"
+          node_type: "DellSonic"
+          node_config_type: "OpenConfig"
+          ip_address: "10.10.10.3"
+          user_name: "node_uid"
+          password: "node_pid"
+          port: 443
+          node_role: "Leaf"
+          node_name: "baskaranleaf2name"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Nodes attributes configuration
+      sfm_nodes:
+        config:
+        - node_id: "baskaranleaf1"
+          node_type: "DellSonic"
+          node_config_type: "OpenConfig"
+          ip_address: "10.10.10.4"
+          user_name: "node_uid"
+          password: "node_pid"
+          port: 443
+          node_role: "Leaf"
+          node_name: "baskaranleaf1name"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Nodes attributes configuration
+      sfm_nodes:
+        config:
+        - node_id: "baskaranspine1"
+          node_type: "DellSonic"
+          node_config_type: "OpenConfig"
+          ip_address: "10.10.10.5"
+          user_name: "node_uid"
+          password: "node_pid"
+          port: 443
+          node_role: "Spine"
+          node_name: "baskaranspine1name"
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+

@@ -1,0 +1,63 @@
+---
+- name: Ansible resource module example for sfm Downlinks
+  hosts: datacenter
+  gather_facts: False
+  connection: httpapi
+  collections:
+    - dellemc.sfm
+  tasks:
+    - name: sfm Downlinks attributes configuration
+      sfm_downlinks:
+        config:
+        - downlink_id: "BaskaranDownlink1"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          downlink_type: "Normal"
+          downlink_name: "BaskaranDownlink1Name"
+          untagged_network: "NetworkRouted31"
+          interface_list: 
+             - name: "baskaranleaf2:Eth1/31" 
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Downlinks attributes configuration
+      sfm_downlinks:
+        config:
+        - downlink_id: "BaskaranDownlink2"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          downlink_type: "Normal"
+          downlink_name: "BaskaranDownlink2Name"
+          interface_list: 
+             - name: "baskaranleaf2:Eth1/32" 
+          network_list: 
+             - name: "NetworkL3Vlan32" 
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+    - name: sfm Downlinks attributes configuration
+      sfm_downlinks:
+        config:
+        - downlink_id: "BaskaranDownlink3"
+          tenant_id: "Global"
+          fabric_id: "baskaranfabric1"
+          downlink_type: "Normal"
+          downlink_name: "BaskaranDownlink3Name"
+          untagged_network: "NetworkL3Vlan31"
+          interface_list: 
+             - name: "baskaranleaf2:Eth1/33" 
+          network_list: 
+             - name: "NetworkL3Vlan33" 
+        state: deleted 
+      register: result
+    - name: Debug the result
+      debug: var=result
+
+
+
+
+
