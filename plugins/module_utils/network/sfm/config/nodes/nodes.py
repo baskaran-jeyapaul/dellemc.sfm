@@ -41,7 +41,17 @@ class Nodes(SfmConfigBase):
         self.resource_name = "nodes"
         self.test_keys = [{'config': {'node_id': '', 'node_type': '', 'node_config_type': '',
                            'ip_address': '', 'user_name': '', 'password': '',
-                           'port': '', 'node_role': '', 'node_name': ''}}]
+                           'port': '', 'node_role': '', 'node_name': '',
+                           'rail_id': '', 'infrastructure_id': '', 'rack_name': '', 'pod_name': ''}}]
+
+    def get_rail_id_str(self, node):
+        ret = []
+        if "rail_id" in node:
+            rail_ids = node["rail_id"]
+            if rail_ids is not None:
+                for r_id in rail_ids:
+                    ret.append(r_id['name'])
+        return ret
 
     def build_delete_all_requests(self, commands):
         debug("build_delete_all_requests", commands)
@@ -84,22 +94,21 @@ class Nodes(SfmConfigBase):
             'NodeRole': node['node_role'],
             'NodeName': node['node_name'],
         }
+
+        rail_id = self.get_rail_id_str(node)
+        if rail_id:
+            data.update({"RailId": rail_id})
+
+        if "infrastructure_id" in node:
+            data.update({"InfrastructureId": node["infrastructure_id"]})
+        if "rack_name" in node:
+            data.update({"RackName": node["rack_name"]})
+        if "pod_name" in node:
+            data.update({"PodName": node["pod_name"]})
+
+        # SFM expects in list for this API
         payload["Nodes"].append(data)
         
-        """
-        payload = {
-            'NodeId': node["node_id"],
-            'NodeType': node["node_type"],
-            'NodeConfigType': node["node_config_type"],
-            'IpAddress': node['ip_address'],
-            'Username': node['user_name'],
-            'Password': node['password'],
-            'Port': node['port'],
-            'NodeRole': node['node_role'],
-            'NodeName': node['node_name'],
-        }
-        """
-
         request = {
             "method": method,
             "path": url,
@@ -126,6 +135,17 @@ class Nodes(SfmConfigBase):
             'NodeRole': node['node_role'],
             'NodeName': node['node_name'],
         }
+
+        rail_id = self.get_rail_id_str(node)
+        if rail_id:
+            payload.update({"RailId": rail_id})
+
+        if "infrastructure_id" in node:
+            payload.update({"InfrastructureId": node["infrastructure_id"]})
+        if "rack_name" in node:
+            payload.update({"RackName": node["rack_name"]})
+        if "pod_name" in node:
+            payload.update({"PodName": node["pod_name"]})
 
         request = {
             "method": method,
