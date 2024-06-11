@@ -28,7 +28,7 @@
           spine_asn: 65311
           bgp_cidr: "162.0.0.1"
           vtep_cidr: "162.0.0.2"
-          topology: "RackBasedClos"
+          topology: "RailOnly"
           leaves: 
              - name: "baskaranleaf1" 
              - name: "baskaranleaf2"
